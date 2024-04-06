@@ -32,11 +32,11 @@ jobs:
 
       - name: verify `dist` is up-to-date
         run: |
-          if ! test -f dist/index.mjs; then
+          if ! test -f dist/index.js; then
             echo "No build found!"
             exit 1
           fi
-          if ! git diff --ignore-space-at-eol --exit-code --quiet dist/index.mjs; then
+          if ! git diff --ignore-space-at-eol --exit-code --quiet dist/index.js; then
             echo "Detected out-of-date build. See status below:"
             git diff
             exit 1

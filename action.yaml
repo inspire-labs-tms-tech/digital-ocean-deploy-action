@@ -16,4 +16,4 @@ outputs:
     description: "The scheduled Deployment ID"
 runs:
   using: 'node20'
-  main: 'dist/index.mjs'
+  main: 'dist/index.js'
