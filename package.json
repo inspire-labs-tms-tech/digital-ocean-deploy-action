@@ -1,14 +1,14 @@
 {
   "name": "digital-ocean-deploy-action",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Push/Schedule a new deployment to an existing Digital Ocean (Apps Platform) App",
-  "main": "index.js",
+  "main": "src/index.ts",
   "pre-commit": [
     "version-check"
   ],
   "scripts": {
     "version-check": "node ./precommit.mjs",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsup"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,10 @@
     "axios": "^1.6.8"
   },
   "devDependencies": {
-    "pre-commit": "^1.2.2"
+    "@types/node": "^20.12.5",
+    "@types/typescript": "^2.0.0",
+    "pre-commit": "^1.2.2",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.4"
   }
 }
