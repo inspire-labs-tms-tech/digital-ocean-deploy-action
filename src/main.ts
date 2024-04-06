@@ -25,6 +25,8 @@ export async function run(): Promise<void> {
     if (!apiKey) throw new Error(`'api-key' is falsy but required (is it defined?)`);
     if (!appID) throw new Error(`'app-id' is falsy but required (is it defined?)`);
 
+    core.info(`attempting to deploy app '${appID}'`);
+
     const endpoint = `https://api.digitalocean.com/v2/apps/${appID}/deployments`;
     const response = await axios.post(endpoint, {
       force_build: force
