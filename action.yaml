@@ -1,0 +1,19 @@
+name: "Digital Ocean Deployment Action"
+description: "Push/Schedule a new deployment to an existing Digital Ocean (Apps Platform) App"
+inputs:
+  api-key:
+    description: "A Digital Ocean API Key"
+    required: true
+  app-id:
+    description: "The unique ID of an Apps Platform application (on Digital Ocean, navigate to your App, and the ID is in the URL, i.e. https://cloud.digitalocean.com/apps/{{ APP ID HERE }}/overview)"
+    required: true
+  force: 
+    description: "Indicates whether to force a build of app from source even if an existing cached build is suitable for re-use (see https://docs.digitalocean.com/reference/api/api-reference/#operation/apps_create_deployment)"
+    required: true
+    default: "false"
+outputs:
+  deployment-id:
+    description: "The scheduled Deployment ID"
+runs:
+  using: 'node20'
+  main: 'index.js'
