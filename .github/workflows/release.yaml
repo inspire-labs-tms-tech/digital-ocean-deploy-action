@@ -30,6 +30,14 @@ jobs:
       - name: build
         run: npm ci && npm run build
 
+      - name: verify `dist` is up-to-date
+        run: |
+          if ! git diff --ignore-space-at-eol --exit-code --quiet dist/index.mjs; then
+            echo "Detected out-of-date build. See status below:"
+            git diff
+            exit 1
+          fi
+
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
