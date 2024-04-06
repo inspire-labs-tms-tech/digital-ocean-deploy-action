@@ -1,0 +1,32 @@
+name: Release to GitHub Marketplace
+
+on: push
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Containerize
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+
+      - name: check version change
+        id: version
+        uses: EndBug/version-check@v2
+        with:
+          diff-search: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: verify version change
+        if: steps.version.outputs.changed == 'false'
+        run: 'echo "VERSION CHANGE NOT DETECTED" && exit 1'
