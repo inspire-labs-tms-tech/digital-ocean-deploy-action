@@ -28261,6 +28261,29 @@ exports["default"] = _default;
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -28275,7 +28298,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.run = void 0;
-const core_1 = __importDefault(__nccwpck_require__(2186));
+const core = __importStar(__nccwpck_require__(2186));
 const axios_1 = __importDefault(__nccwpck_require__(8757));
 /**
  * The main function for the action.
@@ -28285,9 +28308,9 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         var _a;
         try {
-            const apiKey = core_1.default.getInput("api-key");
-            const appID = core_1.default.getInput("app-id");
-            const _force = core_1.default.getInput("force");
+            const apiKey = core.getInput("api-key");
+            const appID = core.getInput("app-id");
+            const _force = core.getInput("force");
             let force;
             switch (_force) {
                 case "true":
@@ -28301,10 +28324,10 @@ function run() {
             }
             if (!apiKey)
                 throw new Error(`'api-key' is falsy but required (is it defined?)`);
-            core_1.default.info("api-key received");
+            core.info("api-key received");
             if (!appID)
                 throw new Error(`'app-id' is falsy but required (is it defined?)`);
-            core_1.default.info(`attempting to deploy app '${appID}'`);
+            core.info(`attempting to deploy app '${appID}'`);
             const endpoint = `https://api.digitalocean.com/v2/apps/${appID}/deployments`;
             const response = yield axios_1.default.post(endpoint, {
                 force_build: force
@@ -28316,10 +28339,10 @@ function run() {
             const deploymentID = (_a = response.data.deployment) === null || _a === void 0 ? void 0 : _a.id;
             if (!deploymentID)
                 throw new Error("failed to retrieve deployment ID");
-            core_1.default.setOutput("deployment-id", deploymentID);
+            core.setOutput("deployment-id", deploymentID);
         }
         catch (e) {
-            core_1.default.setFailed(e.message);
+            core.setFailed(e.message);
         }
     });
 }
