@@ -30,3 +30,11 @@ jobs:
       - name: verify version change
         if: steps.version.outputs.changed == 'false'
         run: 'echo "VERSION CHANGE NOT DETECTED" && exit 1'
+      
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          automatic_release_tag: ${{ steps.version.outputs.version }}
+          files: |
+            *
