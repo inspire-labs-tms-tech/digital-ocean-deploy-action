@@ -1,6 +1,6 @@
 {
   "name": "digital-ocean-deploy-action",
-  "version": "1.6.6",
+  "version": "1.6.7",
   "description": "Push/Schedule a new deployment to an existing Digital Ocean (Apps Platform) App",
   "main": "src/index.ts",
   "pre-commit": [
