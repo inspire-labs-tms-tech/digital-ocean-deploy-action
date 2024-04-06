@@ -1,6 +1,6 @@
 {
   "name": "digital-ocean-deploy-action",
-  "version": "1.6.5",
+  "version": "1.6.6",
   "description": "Push/Schedule a new deployment to an existing Digital Ocean (Apps Platform) App",
   "main": "src/index.ts",
   "pre-commit": [
@@ -8,7 +8,8 @@
   ],
   "scripts": {
     "version-check": "node ./precommit.mjs",
-    "build": "npx ncc build src/index.ts -o dist --source-map --license licenses.txt"
+    "build": "npx ncc build src/index.ts -o dist --source-map --license licenses.txt",
+    "release": "npm run build && git commit -a -m 'autorelease' && git push"
   },
   "repository": {
     "type": "git",
