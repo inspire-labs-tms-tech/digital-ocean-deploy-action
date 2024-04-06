@@ -26,7 +26,7 @@ jobs:
       contents: read
       packages: write
     steps:
-      - uses: inspire-labs-tms-tech/digital-ocean-deploy-action@2.0.0 # or whichever version you prefer, as `X.X.X`
+      - uses: inspire-labs-tms-tech/digital-ocean-deploy-action@2.0.2 # or whichever version you prefer, as `X.X.X`
         with:
           app-id: # << App ID from Setup Step 2 Above >>
           api-key: # << A Digital Ocean API Key, reccomended to use a GitHub secret, like  ${{ secrets.DIGITAL_OCEAN_API_KEY }}>>
